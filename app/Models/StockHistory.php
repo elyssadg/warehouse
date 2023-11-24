@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Database\Factories\ProductFactory;
+use Database\Factories\StockHistoryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class Product extends Model
+class StockHistory extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,6 @@ class Product extends Model
      */
     protected static function newFactory(): Factory
     {
-        return ProductFactory::new();
+        return StockHistoryFactory::new();
     }
 }

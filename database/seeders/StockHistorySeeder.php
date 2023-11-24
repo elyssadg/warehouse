@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\StockHistory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class StockHistorySeeder extends Seeder
@@ -13,5 +14,6 @@ class StockHistorySeeder extends Seeder
     public function run(): void
     {
         //
+        StockHistory::factory(1000)->create();
     }
 }

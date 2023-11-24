@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\WarehouseItem;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,5 +14,6 @@ class WarehouseItemSeeder extends Seeder
     public function run(): void
     {
         //
+        WarehouseItem::factory(5000)->create();
     }
 }
