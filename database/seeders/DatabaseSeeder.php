@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             StockHistorySeeder::class,
             UserWarehouseSeeder::class,
-            WarehouseItem::class
+            WarehouseItemSeeder::class
         ]);
     }
 }

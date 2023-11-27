@@ -17,4 +17,29 @@ class UserWarehouse extends Model
     {
         return UserWarehouseFactory::new();
     }
+
+    protected $primaryKey = ['warehouse_id', 'user_id'];
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
+    protected $fillable = ['warehouse_id', 'user_id', 'created_at'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            $validator = validator($model->toArray(), [
+                'warehouse_id' => 'unique:user_warehouses,warehouse_id,NULL,id,user_id,' . $model->user_id,
+                'user_id' => 'unique:user_warehouses,user_id,NULL,id,warehouse_id,' . $model->warehouse_id,
+            ]);
+
+            if ($validator->fails()) {
+                // Handle validation failure, e.g., throw an exception or log an error
+                return false; // Prevent the model from being saved
+            }
+        });
+    }
 }

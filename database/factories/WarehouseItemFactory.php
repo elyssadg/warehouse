@@ -17,8 +17,8 @@ class WarehouseItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'warehouse_id' => fake()->randomElement(1, 100),
-            'product_id' => fake()->randomElement(1, 100),
+            'warehouse_id' => fake()->numberBetween(1, 100),
+            'product_id' => fake()->numberBetween(1, 100),
             'product_stock' => fake()->numberBetween(1, 9999999),
             'created_at' => now()
         ];
