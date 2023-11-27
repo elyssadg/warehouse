@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\WarehouseItem;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,11 +17,16 @@ class WarehouseItemFactory extends Factory
      */
     public function definition(): array
     {
+        do {
+            $warehouseId = $this->faker->numberBetween(1, 100);
+            $productId = $this->faker->numberBetween(1, 100);
+        } while (WarehouseItem::where('warehouse_id', $warehouseId)->where('product_id', $productId)->exists());
+        
         return [
-            'warehouse_id' => fake()->numberBetween(1, 100),
-            'product_id' => fake()->numberBetween(1, 100),
-            'product_stock' => fake()->numberBetween(1, 9999999),
-            'created_at' => now()
+            'warehouse_id' => $warehouseId,
+            'product_id' => $productId,
+            'product_stock' => $this->faker->numberBetween(1, 9999999),
+            'created_at' => now(),
         ];
     }
 }

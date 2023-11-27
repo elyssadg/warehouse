@@ -14,6 +14,11 @@ class UserWarehouseSeeder extends Seeder
     public function run(): void
     {
         //
-        UserWarehouse::factory(100)->create();
+        $dataCount = 2500;
+
+        do {
+            UserWarehouse::factory()->create();
+            $currentCount = UserWarehouse::count();
+        } while ($currentCount < $dataCount);
     }
 }
