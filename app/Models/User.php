@@ -18,9 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'user_name',
+        'user_email',
         'password',
+        'user_role',
+        'user_address',
+        'user_dob',
     ];
 
     /**
@@ -41,5 +44,54 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'user_dob' => 'date',
     ];
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'user_id';
+
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->attributes['password'];
+    }
+
+    /**
+     * Get the name of the unique identifier for the user.
+     *
+     * @return string
+     */
+    public function getAuthIdentifierName()
+    {
+        return 'user_email';
+    }
+
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->attributes['user_email'];
+    }
+
+    /**
+     * Get the email address that should be used for password reset links.
+     *
+     * @return string
+     */
+    public function getEmailForPasswordReset()
+    {
+        // dd("success");
+        return $this->user_email;
+    }
 }
