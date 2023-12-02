@@ -44,15 +44,11 @@ class WarehouseItem extends Model
     }
 
     public function product() {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Product::class, 'product_id', 'product_id');
     }
 
     public function warehouse() {
-        return $this->belongsTo(Warehouse::class, 'warehouse_id');
-    }
-
-    public function stock_history() {
-        return $this->hasMany(StockHistory::class);
+        return $this->belongsTo(Warehouse::class, 'warehouse_id', 'warehouse_id');
     }
 
 }

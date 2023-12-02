@@ -29,15 +29,15 @@
                             <tbody>
                                 @forelse ($users as $user)
                                     <tr>
-                                        <td class="text-bold-500">{{ $user->user_id }}</td>
+                                        <td>{{ $user->user_id }}</td>
                                         <td>{{ $user->user_name }}</td>
                                         <td>{{ $user->user_email }}</td>
                                         <td>{{ $user->user_address }}</td>
-                                        <td>{{ $user->user_dob }}</td>
+                                        <td>{{ $user->user_dob->format('d F Y') }}</td>
                                         <td>
-                                            @forelse ($user->user_warehouse as $uw)
+                                            @forelse ($user->user_warehouses as $uw)
                                                 <ul>
-                                                    <li>{{ $uw->warehouse->warehouse_id - $uw->warehouse->warehouse_city - $uw->warehouse->warehouse_postalcode }}</li>
+                                                    <li>Warehouse #{{ $uw->warehouse->warehouse_id }}</li>
                                                 </ul>
                                             @empty
                                                 No Warehouse Data

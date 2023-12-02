@@ -95,12 +95,12 @@ class User extends Authenticatable
         return $this->user_email;
     }
     
-    public function stock_history() {
-        return $this->hasMany(StockHistory::class, 'user_id');
+    public function stock_histories() {
+        return $this->hasMany(StockHistory::class, 'user_id', 'user_id');
     }
 
-    public function user_warehouse() {
-        return $this->hasMany(UserWarehouse::class, 'user_id');
+    public function user_warehouses() {
+        return $this->hasMany(UserWarehouse::class, 'user_id', 'user_id');
     }
 
 }

@@ -44,11 +44,11 @@ class UserWarehouse extends Model
     }
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
     public function warehouse() {
-        return $this->belongsTo(Warehouse::class, 'warehouse_id');
+        return $this->belongsTo(Warehouse::class, 'warehouse_id', 'warehouse_id');
     }
     
 }
