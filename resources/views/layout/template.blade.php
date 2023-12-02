@@ -124,26 +124,26 @@
 
                         </li>
 
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-grid-1x2-fill"></i>
-                                <span>Users</span>
-                            </a>
+                        @if (Auth::user() && Auth::user()->user_role == 'Admin')
+                            <li class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link'>
+                                    <i class="bi bi-grid-1x2-fill"></i>
+                                    <span>Users</span>
+                                </a>
 
-                            <ul class="submenu ">
+                                <ul class="submenu ">
 
-                                <li class="submenu-item  ">
-                                    <a href="layout-default.html" class="submenu-link">Add</a>
-                                </li>
+                                    <li class="submenu-item  ">
+                                        <a href="layout-default.html" class="submenu-link">Add</a>
+                                    </li>
 
-                                <li class="submenu-item  ">
-                                    <a href="layout-vertical-1-column.html" class="submenu-link">List</a>
-                                </li>
+                                    <li class="submenu-item  ">
+                                        <a href="{{ route('users.index') }}" class="submenu-link">List</a>
+                                    </li>
 
-                            </ul>
-
-
-                        </li>
+                                </ul>
+                            </li>
+                        @endif
 
                         <li class="sidebar-title">Settings</li>
 

@@ -10,7 +10,7 @@ class ProductType extends Model
     use HasFactory;
 
     public function product() {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'product_type_id');
     }
 
 }

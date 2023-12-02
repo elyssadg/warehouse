@@ -20,11 +20,11 @@ class Product extends Model
     }
 
     public function product_type() {
-        return $this->belongsTo(ProductType::class);
+        return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 
     public function warehouse_item() {
-        return $this->hasMany(Warehouse::class);
+        return $this->hasMany(WarehouseItem::class, 'product_id');
     }
 
 }

@@ -96,11 +96,11 @@ class User extends Authenticatable
     }
     
     public function stock_history() {
-        return $this->hasMany(StockHistory::class);
+        return $this->hasMany(StockHistory::class, 'user_id');
     }
 
     public function user_warehouse() {
-        return $this->hasMany(UserWarehouse::class);
+        return $this->hasMany(UserWarehouse::class, 'user_id');
     }
 
 }

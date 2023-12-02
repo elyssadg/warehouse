@@ -10,7 +10,11 @@ class Warehouse extends Model
     use HasFactory;
 
     public function warehouse_item() {
-        return $this->hasMany(WarehouseItem::class);
+        return $this->hasMany(WarehouseItem::class, 'warehouse_id');
+    }
+    
+    public function user_warehouse() {
+        return $this->hasMany(UserWarehouse::class, 'warehouse_id');
     }
     
 }

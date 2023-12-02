@@ -20,11 +20,11 @@ class StockHistory extends Model
     }
 
     public function user() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function warehouse_item() {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(WarehouseItem::class);
     }
 
 }
