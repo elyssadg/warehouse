@@ -18,4 +18,13 @@ class Product extends Model
     {
         return ProductFactory::new();
     }
+
+    public function product_type() {
+        return $this->belongsTo(ProductType::class);
+    }
+
+    public function warehouse_item() {
+        return $this->hasMany(Warehouse::class);
+    }
+
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class ViewController extends Controller
 {
     //
-    public function index()
+    public function login()
     {
         if (Auth::check()) {
             return redirect('/dashboard');
@@ -16,4 +16,9 @@ class ViewController extends Controller
             return view('auth.login');
         }
     }
+
+    public function dashboard() {
+        return view('dashboard');
+    }
+
 }

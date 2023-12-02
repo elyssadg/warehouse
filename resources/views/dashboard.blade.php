@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('title', 'Profile Statistics')
+@section('title', 'Dashboard')
 
 @section('custom-script')
     <!-- Need: Apexcharts -->

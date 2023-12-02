@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Warehouse extends Model
 {
     use HasFactory;
+
+    public function warehouse_item() {
+        return $this->hasMany(WarehouseItem::class);
+    }
+    
 }

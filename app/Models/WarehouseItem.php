@@ -42,4 +42,17 @@ class WarehouseItem extends Model
             }
         });
     }
+
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function warehouse() {
+        return $this->belongsTo(Warehouse::class);
+    }
+
+    public function stock_history() {
+        return $this->hasMany(StockHistory::class);
+    }
+
 }

@@ -42,4 +42,9 @@ class UserWarehouse extends Model
             }
         });
     }
+
+    public function user() {
+        return $this->belongsTo(UserWarehouse::class);
+    }
+    
 }

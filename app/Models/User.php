@@ -94,4 +94,13 @@ class User extends Authenticatable
         // dd("success");
         return $this->user_email;
     }
+    
+    public function stock_history() {
+        return $this->hasMany(StockHistory::class);
+    }
+
+    public function user_warehouse() {
+        return $this->hasMany(UserWarehouse::class);
+    }
+
 }

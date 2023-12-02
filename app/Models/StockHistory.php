@@ -18,4 +18,13 @@ class StockHistory extends Model
     {
         return StockHistoryFactory::new();
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function warehouse_item() {
+        return $this->belongsTo(Product::class);
+    }
+
 }
