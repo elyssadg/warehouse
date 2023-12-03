@@ -27,7 +27,7 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="{{ route('login') }}"><img src="dist/assets/compiled/svg/logo.svg" alt="Logo"
+                            <a href="{{ route('login') }}"><img src="assets/logo/logo.svg" alt="Logo"
                                     srcset=""></a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -165,24 +165,22 @@
 
                                 </li>
 
-                                <li class="submenu-item  ">
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-
-                                        <a :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                                            this.closest('form').submit();"
-                                            class="submenu-link">
-                                            {{ __('Log Out') }}
-                                        </a>
-                                    </form>
-                                    {{-- <a href="account-security.html" class="submenu-link">Logout</a> --}}
-
-                                </li>
-
                             </ul>
 
 
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <a :href="route('logout')"
+                                    onclick="event.preventDefault(); this.closest('form').submit();"
+                                    class="sidebar-link cursor-pointer" role="button">
+                                    <i class="bi bi-box-arrow-left"></i>
+                                    <span> {{ __('Log Out') }}</span>
+                                </a>
+                            </form>
                         </li>
 
                     </ul>
