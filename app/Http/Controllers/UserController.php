@@ -63,4 +63,10 @@ class UserController extends Controller
     {
         //
     }
+
+    public function getTotalStaff()
+    {
+        $totalStaff = User::where('user_role', 'Staff')->count();
+        return $totalStaff;
+    }
 }

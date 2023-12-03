@@ -18,7 +18,17 @@ class ViewController extends Controller
     }
 
     public function dashboard() {
-        return view('dashboard');
+        $warehouseController = new WarehouseController();
+        $productTypeController = new ProductTypeController();
+        $productController = new ProductController();
+        $staffController = new UserController();
+
+        $totalWarehouse = $warehouseController->getTotalWarehouse();
+        $totalCategory = $productTypeController->getTotalType();
+        $totalProduct = $productController->getTotalProduct();
+        $totalStaff = $staffController->getTotalStaff();
+
+        return view('dashboard', compact('totalWarehouse', 'totalCategory', 'totalProduct', 'totalStaff'));
     }
 
 }

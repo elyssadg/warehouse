@@ -22,8 +22,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Profile Views</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="text-muted font-semibold">Total Warehouse</h6>
+                                    <h6 class="font-extrabold mb-0">{{$totalWarehouse}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -39,8 +39,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Followers</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="text-muted font-semibold">Total Category</h6>
+                                    <h6 class="font-extrabold mb-0">{{$totalCategory}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -56,8 +56,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Following</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="text-muted font-semibold">Total Product</h6>
+                                    <h6 class="font-extrabold mb-0">{{$totalProduct}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -73,8 +73,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Saved Post</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="text-muted font-semibold">Total Staff</h6>
+                                    <h6 class="font-extrabold mb-0">{{$totalStaff}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -85,11 +85,14 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Profile Visit</h4>
+                            <h4>Item Yearly Statistic</h4>
                         </div>
                         <div class="card-body">
                             <div id="chart-profile-visit"></div>
+                            <div id="bar-item-yearly"></div>
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -258,8 +261,8 @@
                             <img src="dist/assets/compiled/jpg/1.jpg" alt="Face 1">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <h5 class="font-bold">{{ Auth::user()->user_name }}</h5>
+                            <h6 class="text-muted mb-0">{{ Auth::user()->user_email }}</h6>
                         </div>
                     </div>
                 </div>

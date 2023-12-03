@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="dist/assets/compiled/css/app.css">
     <link rel="stylesheet" href="dist/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="dist/assets/compiled/css/auth.css">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
