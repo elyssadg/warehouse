@@ -44,14 +44,14 @@
                                                 <a class="me-3"
                                                     href="{{ route('product.show', ['product' => $product->id]) }}"><i
                                                         class="bi bi-info-circle" role="button"></i>
-                                                    <span class="d-none d-lg-inline">details</span></a>
+                                                    <span class="d-none d-lg-inline">Details</span></a>
                                                 <a class="me-3"
                                                     href="{{ route('product.edit', ['product' => $product->id]) }}"><i
                                                         class="bi bi-pencil-square" role="button"></i>
-                                                    <span class="d-none d-lg-inline">edit</span></a>
+                                                    <span class="d-none d-lg-inline">Edit</span></a>
                                                 <a class="text-danger deleteButton" data-product-id="{{ $product->id }}"
                                                     role="button"><i class="bi bi-trash"></i>
-                                                    <span class="d-none d-lg-inline">delete</span></a>
+                                                    <span class="d-none d-lg-inline">Delete</span></a>
                                                 <form class="deleteForm" data-product-id="{{ $product->id }}"
                                                     action="{{ route('product.destroy', ['product' => $product->id]) }}"
                                                     method="POST">

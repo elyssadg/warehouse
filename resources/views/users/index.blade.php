@@ -74,14 +74,12 @@
                             </tbody>
                         </table>
                     </div>
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>
     </section>
     
-    <div class="card-body w-100 d-flex align-items-center justify-content-between">
-        {{ $users->links('pagination.custom') }}
-    </div>
 @endsection
 
 @section('custom-script')
