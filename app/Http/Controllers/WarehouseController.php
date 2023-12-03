@@ -66,6 +66,14 @@ class WarehouseController extends Controller
     public function getTotalWarehouse()
     {
         $totalWarehouse = Warehouse::all()->count();
+
         return $totalWarehouse;
+    }
+
+    public function getAllWarehouse()
+    {
+        $warehouse = Warehouse::all();
+
+        return $warehouse;
     }
 }
