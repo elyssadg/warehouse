@@ -19,7 +19,7 @@ return new class extends Migration
             $table->double('weight');
             $table->integer('price');
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
         });
     }
 
