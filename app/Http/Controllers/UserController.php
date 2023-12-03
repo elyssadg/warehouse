@@ -45,25 +45,37 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'user_name' => 'required|string|max:255',
+            'user_address' => 'required|string|max:255',
+            'user_dob' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+        ]);
+
+        $user->name = $request->input('user_name');
+        $user->role = $request->input('user_role');
+        $user->address = $request->input('user_address');
+        $user->dob = $request->input('user_dob');
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'Staff updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        User::find($id)->delete();
-        
-
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'Staff deleted successfully.');
     }
 
     public function getTotalStaff()
