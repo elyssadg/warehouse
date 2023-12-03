@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductType;
 use Illuminate\Http\Request;
 
 class ProductTypeController extends Controller
@@ -60,5 +61,11 @@ class ProductTypeController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getTotalType()
+    {
+        $totalProductType = ProductType::all()->count();
+        return $totalProductType;
     }
 }
