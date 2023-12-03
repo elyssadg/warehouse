@@ -134,7 +134,7 @@
 
                                 <ul class="submenu">
                                     <li class="submenu-item">
-                                        <a href="layout-default.html" class="submenu-link"
+                                        <a href="{{ route('users.create') }}" class="submenu-link"
                                             style="{{ request()->route()->getName() === 'users.store'? 'color: #435ebe; font-weight: 700;': '' }}">
                                             Add
                                         </a>

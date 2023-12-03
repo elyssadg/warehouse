@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -29,7 +30,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_name' => 'required|string|max:255',
+            'user_email' => 'required|email|unique:users,email|max:255',
+            'user_password' => 'required|min:8|confirmed',
+            'user_password_confirmation' => 'required',
+            'user_address' => 'required|string|max:255',
+            'user_role'=> 'required|in:Admin,Staff',
+            'user_dob' => 'required|before:-13 years'
+        ]);
+        
+        User::create([
+            'name' => $request->input('user_name'),
+            'email' => $request->input('user_email'),
+            'password' => Hash::make($request->input('user_password')),
+            'role' => $request->input('user_role'),
+            'address' => $request->input('user_address'),
+            'dob' => $request->input('user_dob')
+        ]);
+
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
     /**
@@ -43,9 +63,8 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
         return view('users.edit', compact('user'));
     }
 
@@ -57,7 +76,7 @@ class UserController extends Controller
         $request->validate([
             'user_name' => 'required|string|max:255',
             'user_address' => 'required|string|max:255',
-            'user_dob' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+            'user_dob' => 'required|before:-18 years'
         ]);
 
         $user->name = $request->input('user_name');

@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('title', 'Manage Staff')
+@section('title', 'Manage User')
 
 @section('custom-header')
     <link rel="stylesheet" href="/dist/assets/extensions/sweetalert2/sweetalert2.min.css">
@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-content">
                 <div class="card-header">
-                    <h4 class="card-title">All Staff</h4>
+                    <h4 class="card-title">All User</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
