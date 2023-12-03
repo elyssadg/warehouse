@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stock_histories', function (Blueprint $table) {
-            $table->id('stock_id');
-            $table->foreignId('warehouse_id')->constrained('warehouses', 'warehouse_id');
-            $table->foreignId('product_id')->constrained('products', 'product_id');
-            $table->foreignId('user_id')->constrained('users', 'user_id');
+            $table->id('id');
+            $table->foreignId('warehouse_id')->constrained('warehouses');
+            $table->foreignId('product_id')->constrained('products');
+            $table->foreignId('user_id')->constrained('users');
             $table->integer('current_stock');
             $table->string('transaction_type');
             $table->integer('transaction_value');
-            $table->dateTime('insert_at');
             $table->timestamps();
         });
     }

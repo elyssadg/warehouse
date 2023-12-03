@@ -14,9 +14,9 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        $product_types = DB::table('product_types')->paginate(5);;
+        $productTypes = DB::table('product_types')->paginate(5);;
 
-        return view('product-types.index', compact('product_types'));
+        return view('product-types.index', compact('productTypes'));
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        // return view('product-types.create');
+        return view('product-types.create');
     }
 
     /**
@@ -36,9 +36,9 @@ class ProductTypeController extends Controller
             'product_type_name' => 'required|string|max:255',
         ]);
 
-        ProductType::create([
-            'product_type_name' => $request->input('product_type_name'),
-        ]);
+        $productType = new ProductType();
+        $productType->name = $request->input('product_type_name');
+        $productType->save();
 
         return redirect()->route('product-types.index')->with('success', 'Product type created successfully.');
     }
@@ -68,9 +68,8 @@ class ProductTypeController extends Controller
             'product_type_name' => 'required|string|max:255',
         ]);
 
-        $productType->update([
-            'product_type_name' => $request->input('product_type_name'),
-        ]);
+        $productType->name = $request->input('product_type_name');
+        $productType->save();
 
         return redirect()->route('product-types.index')->with('success', 'Product type updated successfully.');
     }
@@ -80,6 +79,11 @@ class ProductTypeController extends Controller
      */
     public function destroy(ProductType $productType)
     {
+        $productType->products->each(function ($product) {
+            $product->stock_histories()->delete();
+            $product->warehouse_items()->delete();
+            $product->delete();
+        });
         $productType->delete();
 
         return redirect()->route('product-types.index')->with('success', 'Product type deleted successfully.');

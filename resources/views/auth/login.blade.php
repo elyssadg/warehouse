@@ -8,7 +8,7 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="form-group position-relative has-icon-left mb-4">
-            <input type="email" class="form-control form-control-xl" placeholder="E-mail"type="email" name="user_email"
+            <input type="email" class="form-control form-control-xl" placeholder="E-mail"type="email" name="email"
                 :value="old('email')" required autofocus autocomplete="username" />
             <div class="form-control-icon">
                 <i class="bi bi-person"></i>
@@ -59,7 +59,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="user_email" :value="old('email')"
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                 required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>

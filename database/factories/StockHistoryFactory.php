@@ -19,14 +19,14 @@ class StockHistoryFactory extends Factory
         $transactionfake = fake()->numberBetween(0, 1);
         return [
             //
-            'warehouse_id' => fake()->numberBetween(1, 100),
-            'product_id' => fake()->numberBetween(1, 1000),
-            'user_id' => fake()->numberBetween(1, 100),
-            'current_stock' => fake()->numberBetween(1, 999999),
+            'warehouse_id' => fake()->numberBetween(1, 50),
+            'product_id' => fake()->numberBetween(1, 100),
+            'user_id' => fake()->numberBetween(1, 50),
+            'current_stock' => fake()->numberBetween(1, 1000),
             'transaction_type' => $transactionfake == 0 ? 'insert' : 'retreive',
             'transaction_value' => $transactionfake == 0 ? fake()->numberBetween(1, 100) :
                 fake()->numberBetween(-100, -1),
-            'insert_at' => fake()->dateTimeBetween('-10 years', 'now'),
+            'created_at' => now()
         ];
     }
 }

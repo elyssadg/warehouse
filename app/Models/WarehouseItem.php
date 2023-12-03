@@ -24,7 +24,7 @@ class WarehouseItem extends Model
 
     protected $keyType = 'string';
 
-    protected $fillable = ['warehouse_id', 'product_id', 'product_stock', 'created_at'];
+    protected $fillable = ['warehouse_id', 'product_id', 'stock', 'created_at'];
 
     protected static function boot()
     {
@@ -37,18 +37,17 @@ class WarehouseItem extends Model
             ]);
 
             if ($validator->fails()) {
-                // Handle validation failure, e.g., throw an exception or log an error
                 return false;
             }
         });
     }
 
     public function product() {
-        return $this->belongsTo(Product::class, 'product_id', 'product_id');
+        return $this->belongsTo(Product::class);
     }
 
     public function warehouse() {
-        return $this->belongsTo(Warehouse::class, 'warehouse_id', 'warehouse_id');
+        return $this->belongsTo(Warehouse::class);
     }
 
 }

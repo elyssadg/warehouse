@@ -18,9 +18,39 @@ class ProductTypeFactory extends Factory
     {
         return [
             //
-            'product_type_name' => fake()->sentence(4, true),
+            'name' => fake()->randomElement([
+                'Fresh Produce',
+                'Dairy & Eggs',
+                'Bakery & Breads',
+                'Meat & Seafood',
+                'Frozen Foods',
+                'Canned Goods',
+                'Snacks & Chips',
+                'Beverages',
+                'Condiments & Sauces',
+                'Pasta & Grains',
+                'Breakfast & Cereal',
+                'Sweets & Chocolates',
+                'Household Essentials',
+                'Cleaning Supplies',
+                'Personal Care',
+                'Baby & Toddler',
+                'Pet Supplies',
+                'Health & Wellness',
+                'International Foods',
+                'Organic & Natural',
+                'Gluten-Free',
+                'Vegetarian & Vegan',
+                'Deli & Prepared Foods',
+                'Kitchen & Cooking',
+                'Paper & Plastic Products',
+                'Office & School Supplies',
+                'Home Decor',
+                'Electronics',
+                'Clothing & Apparel',
+                'Outdoor & Garden'
+            ]),
             'created_at' => now()
-
         ];
     }
 }
