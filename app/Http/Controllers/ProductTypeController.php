@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductType;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductTypeController extends Controller
 {
@@ -12,7 +14,9 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        //
+        $productTypes = DB::table('product_types')->paginate(5);;
+
+        return view('product-types.index', compact('productTypes'));
     }
 
     /**
@@ -20,7 +24,7 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('product-types.create');
     }
 
     /**
@@ -28,7 +32,15 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_type_name' => 'required|string|max:255',
+        ]);
+
+        $productType = new ProductType();
+        $productType->name = $request->input('product_type_name');
+        $productType->save();
+
+        return redirect()->route('product-types.index')->with('success', 'Product type created successfully.');
     }
 
     /**
@@ -36,31 +48,45 @@ class ProductTypeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // return view('product-types.show', compact('productType'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(ProductType $productType)
     {
-        //
+        return view('product-types.edit', compact('productType'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, ProductType $productType)
     {
-        //
+        $request->validate([
+            'product_type_name' => 'required|string|max:255',
+        ]);
+
+        $productType->name = $request->input('product_type_name');
+        $productType->save();
+
+        return redirect()->route('product-types.index')->with('success', 'Product type updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(ProductType $productType)
     {
-        //
+        $productType->products->each(function ($product) {
+            $product->stock_histories()->delete();
+            $product->warehouse_items()->delete();
+            $product->delete();
+        });
+        $productType->delete();
+
+        return redirect()->route('product-types.index')->with('success', 'Product type deleted successfully.');
     }
 
     public function getTotalType()
