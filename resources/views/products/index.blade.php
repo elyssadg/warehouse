@@ -41,7 +41,11 @@
                                         <td class="text-nowrap">{{ $product->updated_at }}</td>
                                         <td class="text-nowrap">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a class="me-2"
+                                                <a class="me-3"
+                                                    href="{{ route('product.show', ['product' => $product->id]) }}"><i
+                                                        class="bi bi-info-circle" role="button"></i>
+                                                    <span class="d-none d-lg-inline">details</span></a>
+                                                <a class="me-3"
                                                     href="{{ route('product.edit', ['product' => $product->id]) }}"><i
                                                         class="bi bi-pencil-square" role="button"></i>
                                                     <span class="d-none d-lg-inline">edit</span></a>

@@ -63,7 +63,7 @@
                                         min="0">
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-between">
-                                    <a href="{{ route('product-type.index') }}"
+                                    <a href="{{ route('product.index') }}"
                                         class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     <button type="submit" class="btn btn-primary me-1 mb-1">Update</button>
                                 </div>

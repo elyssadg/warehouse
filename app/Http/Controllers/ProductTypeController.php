@@ -46,9 +46,10 @@ class ProductTypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ProductType $productType)
     {
-        // return view('product-types.show', compact('productType'));
+        $products = $productType->products()->paginate(15);
+        return view('product-types.show', compact('productType', 'products'));
     }
 
     /**
