@@ -99,26 +99,26 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item  has-sub {{ request()->routeIs('product.*') ? 'active' : '' }}">
+                        <li class="sidebar-item  has-sub {{ request()->routeIs('product.*') || request()->routeIs('product-types.*') ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Product</span>
                             </a>
 
                             <ul class="submenu">
-
                                 <li class="submenu-item  ">
-                                    <a href="{{ route('product-types.index') }}" class="submenu-link">Types</a>
+                                    <a href="{{ route('product-types.index') }}" class="submenu-link"
+                                        style="{{ request()->routeIs('product-types.*') ? 'color: #435ebe; font-weight: 700;': '' }}"">Types</a>
 
                                 </li>
                                 <li class="submenu-item">
                                     <a href="extra-component-avatar.html" class="submenu-link"
-                                        style="{{ request()->route()->getName() === 'product.store'? 'color: #435ebe; font-weight: 700;': '' }}">Add</a>
+                                        style="{{ request()->route()->getName() === 'products.store'? 'color: #435ebe; font-weight: 700;': '' }}">Add</a>
                                 </li>
 
                                 <li class="submenu-item ">
                                     <a href="extra-component-comment.html" class="submenu-link"
-                                        style="{{ request()->route()->getName() === 'product.index'? 'color: #435ebe; font-weight: 700;': '' }}">List</a>
+                                        style="{{ request()->route()->getName() === 'products.index'? 'color: #435ebe; font-weight: 700;': '' }}">List</a>
                                 </li>
                             </ul>
                         </li>

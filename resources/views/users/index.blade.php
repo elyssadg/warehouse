@@ -34,9 +34,10 @@
                                         <td>{{ $user->dob->format('d F Y') }}</td>
                                         <td>
                                             @forelse ($user->user_warehouses as $uw)
-                                                <ul>
-                                                    <li>Warehouse #{{ $uw->warehouse->id }}</li>
-                                                </ul>
+                                                #{{ $uw->warehouse->id }}
+                                                @if (!$loop->last)
+                                                    , 
+                                                @endif
                                             @empty
                                                 No Warehouse Data
                                             @endforelse
@@ -46,9 +47,15 @@
                                                 <a href="">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
-                                                <a href="{{ url('users/destroy/'.$user->id) }}">
+                                                <button class="btn deleteButton" data-user-id="{{ $user->id }}">
                                                     <i class="bi bi-trash"></i>
-                                                </a>
+                                                </button>
+                                                <form class="deleteForm" data-user-id="{{ $user->id }}"
+                                                    action="{{ route('users.destroy', ['user' => $user->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
