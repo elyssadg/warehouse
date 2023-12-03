@@ -18,14 +18,14 @@ class WarehouseItemFactory extends Factory
     public function definition(): array
     {
         do {
-            $warehouseId = $this->faker->numberBetween(1, 100);
+            $warehouseId = $this->faker->numberBetween(1, 50);
             $productId = $this->faker->numberBetween(1, 100);
         } while (WarehouseItem::where('warehouse_id', $warehouseId)->where('product_id', $productId)->exists());
         
         return [
             'warehouse_id' => $warehouseId,
             'product_id' => $productId,
-            'product_stock' => $this->faker->numberBetween(1, 9999999),
+            'stock' => $this->faker->numberBetween(1, 9999999),
             'created_at' => now(),
         ];
     }

@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('title', 'Staff')
+@section('title', 'Staff List')
 
 @section('custom-script')
     
@@ -9,39 +9,47 @@
 @section('content')
     <section class="section">
         <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Staff List</h4>
-            </div>
             <div class="card-content">
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-lg">
                             <thead>
-                                <tr>
+                                <tr style="color: #25396f">
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Address</th>
                                     <th>DOB</th>
                                     <th>Warehouse</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($users as $user)
                                     <tr>
-                                        <td>{{ $user->user_id }}</td>
-                                        <td>{{ $user->user_name }}</td>
-                                        <td>{{ $user->user_email }}</td>
-                                        <td>{{ $user->user_address }}</td>
-                                        <td>{{ $user->user_dob->format('d F Y') }}</td>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->address }}</td>
+                                        <td>{{ $user->dob->format('d F Y') }}</td>
                                         <td>
                                             @forelse ($user->user_warehouses as $uw)
                                                 <ul>
-                                                    <li>Warehouse #{{ $uw->warehouse->warehouse_id }}</li>
+                                                    <li>Warehouse #{{ $uw->warehouse->id }}</li>
                                                 </ul>
                                             @empty
                                                 No Warehouse Data
                                             @endforelse
+                                        </td>
+                                        <td>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <a href="">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                                <a href="">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty
@@ -56,21 +64,8 @@
             </div>
         </div>
     </section>
-
-    <div class="card-body">
-        <p>Change prev and next button into icon</p>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination pagination-primary">
-                <li class="page-item"><a class="page-link" href="#">
-                        <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-                    </a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">
-                        <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-                    </a></li>
-            </ul>
-        </nav>
+    
+    <div class="card-body d-flex align-items-center justify-content-end">
+        {{ $users->onEachSide(1)->links('pagination.custom') }}
     </div>
 @endsection

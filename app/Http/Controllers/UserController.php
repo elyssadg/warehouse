@@ -12,8 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('user_role', '=', 'Staff')->paginate(10);
-        return view('users.index', compact('users'));
+        $users = User::where('role', '=', 'Staff')->paginate(10);
+        return view('users.view-staff', compact('users'));
     }
 
     /**
@@ -66,7 +66,7 @@ class UserController extends Controller
 
     public function getTotalStaff()
     {
-        $totalStaff = User::where('user_role', 'Staff')->count();
+        $totalStaff = User::where('role', 'Staff')->count();
         return $totalStaff;
     }
 }

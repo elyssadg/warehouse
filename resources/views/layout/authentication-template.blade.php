@@ -27,7 +27,7 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="{{ route('login') }}"><img src="dist/assets/compiled/svg/logo.svg" alt="Logo"></a>
+                        <a href="{{ route('login') }}"><img src="assets/logo/logo.svg" alt="Logo"></a>
                     </div>
                     @yield('auth-content')
                 </div>

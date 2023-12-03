@@ -18,12 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_name',
-        'user_email',
+        'name',
+        'email',
         'password',
-        'user_role',
-        'user_address',
-        'user_dob',
+        'role',
+        'address',
+        'dob',
     ];
 
     /**
@@ -44,7 +44,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'user_dob' => 'date',
+        'dob' => 'date',
     ];
 
     /**
@@ -52,7 +52,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'id';
 
     /**
      * Get the password for the user.
@@ -71,7 +71,7 @@ class User extends Authenticatable
      */
     public function getAuthIdentifierName()
     {
-        return 'user_email';
+        return 'email';
     }
 
     /**
@@ -81,7 +81,7 @@ class User extends Authenticatable
      */
     public function getAuthIdentifier()
     {
-        return $this->attributes['user_email'];
+        return $this->attributes['email'];
     }
 
     /**
@@ -91,16 +91,15 @@ class User extends Authenticatable
      */
     public function getEmailForPasswordReset()
     {
-        // dd("success");
-        return $this->user_email;
+        return $this->email;
     }
     
     public function stock_histories() {
-        return $this->hasMany(StockHistory::class, 'user_id', 'user_id');
+        return $this->hasMany(StockHistory::class);
     }
 
     public function user_warehouses() {
-        return $this->hasMany(UserWarehouse::class, 'user_id', 'user_id');
+        return $this->hasMany(UserWarehouse::class);
     }
 
 }

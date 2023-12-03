@@ -20,15 +20,15 @@ class Product extends Model
     }
 
     public function product_type() {
-        return $this->belongsTo(ProductType::class, 'product_type_id', 'product_type_id');
+        return $this->belongsTo(ProductType::class);
     }
 
     public function warehouse_items() {
-        return $this->hasMany(WarehouseItem::class, 'product_id', 'product_id');
+        return $this->hasMany(WarehouseItem::class);
     }
 
     public function stock_histories() {
-        return $this->hasMany(StockHistory::class, 'product_id', 'product_id');
+        return $this->hasMany(StockHistory::class);
     }
 
 }
