@@ -14,7 +14,7 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        $productTypes = DB::table('product_types')->paginate(5);;
+        $productTypes = ProductType::paginate(5);;
 
         return view('product-types.index', compact('productTypes'));
     }
@@ -40,15 +40,16 @@ class ProductTypeController extends Controller
         $productType->name = $request->input('product_type_name');
         $productType->save();
 
-        return redirect()->route('product-types.index')->with('success', 'Product type created successfully.');
+        return redirect()->route('product-type.index')->with('success', 'Product type created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ProductType $productType)
     {
-        // return view('product-types.show', compact('productType'));
+        $products = $productType->products()->paginate(15);
+        return view('product-types.show', compact('productType', 'products'));
     }
 
     /**
@@ -71,7 +72,7 @@ class ProductTypeController extends Controller
         $productType->name = $request->input('product_type_name');
         $productType->save();
 
-        return redirect()->route('product-types.index')->with('success', 'Product type updated successfully.');
+        return redirect()->route('product-type.index')->with('success', 'Product type updated successfully.');
     }
 
     /**
@@ -86,7 +87,7 @@ class ProductTypeController extends Controller
         });
         $productType->delete();
 
-        return redirect()->route('product-types.index')->with('success', 'Product type deleted successfully.');
+        return redirect()->route('product-type.index')->with('success', 'Product type deleted successfully.');
     }
 
     public function getTotalType()

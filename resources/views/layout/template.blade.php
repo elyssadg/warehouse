@@ -99,7 +99,8 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item  has-sub {{ request()->routeIs('product.*') || request()->routeIs('product-types.*') ? 'active' : '' }}">
+                        <li
+                            class="sidebar-item  has-sub {{ request()->routeIs('product.*') || request()->routeIs('product-type.*') ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Product</span>
@@ -107,18 +108,19 @@
 
                             <ul class="submenu">
                                 <li class="submenu-item  ">
-                                    <a href="{{ route('product-types.index') }}" class="submenu-link"
-                                        style="{{ request()->routeIs('product-types.*') ? 'color: #435ebe; font-weight: 700;': '' }}"">Types</a>
+
+                                    <a href="{{ route('product-type.index') }}" class="submenu-link"
+                                        style="{{ request()->route()->getName() === 'product-type.index'? 'color: #435ebe; font-weight: 700;': '' }}">Types</a>
 
                                 </li>
                                 <li class="submenu-item">
-                                    <a href="extra-component-avatar.html" class="submenu-link"
-                                        style="{{ request()->route()->getName() === 'products.store'? 'color: #435ebe; font-weight: 700;': '' }}">Add</a>
+                                    <a href="{{ route('product.create') }}" class="submenu-link"
+                                        style="{{ request()->route()->getName() === 'product.create'? 'color: #435ebe; font-weight: 700;': '' }}">Add</a>
                                 </li>
 
                                 <li class="submenu-item ">
-                                    <a href="extra-component-comment.html" class="submenu-link"
-                                        style="{{ request()->route()->getName() === 'products.index'? 'color: #435ebe; font-weight: 700;': '' }}">List</a>
+                                    <a href="{{ route('product.index') }}" class="submenu-link"
+                                        style="{{ request()->route()->getName() === 'product.index'? 'color: #435ebe; font-weight: 700;': '' }}">List</a>
                                 </li>
                             </ul>
                         </li>

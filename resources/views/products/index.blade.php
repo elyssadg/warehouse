@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('title', 'Manage Product Type')
+@section('title', 'Manage Products')
 
 @section('custom-header')
     <link rel="stylesheet" href="/dist/assets/extensions/sweetalert2/sweetalert2.min.css">
@@ -12,10 +12,8 @@
         <x-alert-error />
         <div class="card">
             <div class="card-content">
-                <div class="card-header d-flex justify-content-between">
-                    <h4 class="card-title">All Product Types</h4>
-                    <a href="{{ route('product-type.create') }}" class="btn btn-primary icon icon-left"><i
-                            class="bi bi-plus"></i> <span class="d-none d-lg-inline">New</span></a>
+                <div class="card-header">
+                    <h4 class="card-title">All Products</h4>
                 </div>
                 <div class="card-body">
                     <!-- Table with outer spacing -->
@@ -24,31 +22,38 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>ACTION</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Weight</th>
+                                    <th>Price</th>
+                                    <th>Updated At</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($productTypes as $productType)
+                                @foreach ($products as $product)
                                     <tr>
-                                        <td class="text-bold-500">{{ $productType->id }}</td>
-                                        <td class="text-bold-500">{{ $productType->name }}</td>
-                                        <td>
+                                        <td class="text-bold-500">{{ $product->id }}</td>
+                                        <td class="text-bold-500 text-nowrap">{{ $product->name }}</td>
+                                        <td class="text-nowrap">{{ $product->product_type->name }}</td>
+                                        <td>{{ $product->weight }}</td>
+                                        <td>{{ $product->price }}</td>
+                                        <td class="text-nowrap">{{ $product->updated_at }}</td>
+                                        <td class="text-nowrap">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="{{ route('product-type.show', ['product_type' => $productType->id]) }}"
-                                                    class="btn btn-warning icon icon-left"> <span
-                                                        class="d-none d-lg-inline">View
-                                                        Products</span></a>
-                                                <a
-                                                    href="{{ route('product-type.edit', ['product_type' => $productType->id]) }}"><i
-                                                        class="bi bi-pencil-square"></i>
-                                                    <span class="d-none d-lg-inline">Edit</span></a>
-                                                <a class="text-danger deleteButton"
-                                                    data-product-type-id="{{ $productType->id }}" role="button"><i
-                                                        class="bi bi-trash"></i>
-                                                    <span class="d-none d-lg-inline">Delete</span></a>
-                                                <form class="deleteForm" data-product-type-id="{{ $productType->id }}"
-                                                    action="{{ route('product-type.destroy', ['product_type' => $productType->id]) }}"
+                                                <a class="me-3"
+                                                    href="{{ route('product.show', ['product' => $product->id]) }}"><i
+                                                        class="bi bi-info-circle" role="button"></i>
+                                                    <span class="d-none d-lg-inline">details</span></a>
+                                                <a class="me-3"
+                                                    href="{{ route('product.edit', ['product' => $product->id]) }}"><i
+                                                        class="bi bi-pencil-square" role="button"></i>
+                                                    <span class="d-none d-lg-inline">edit</span></a>
+                                                <a class="text-danger deleteButton" data-product-id="{{ $product->id }}"
+                                                    role="button"><i class="bi bi-trash"></i>
+                                                    <span class="d-none d-lg-inline">delete</span></a>
+                                                <form class="deleteForm" data-product-id="{{ $product->id }}"
+                                                    action="{{ route('product.destroy', ['product' => $product->id]) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -60,7 +65,7 @@
                             </tbody>
                         </table>
                     </div>
-                    {{ $productTypes->links() }}
+                    {{ $products->links() }}
                 </div>
             </div>
         </div>
@@ -75,9 +80,9 @@
 
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const productId = this.getAttribute('data-product-type-id');
+                    const productId = this.getAttribute('data-product-id');
                     const deleteForm = document.querySelector(
-                        `.deleteForm[data-product-type-id="${productId}"]`);
+                        `.deleteForm[data-product-id="${productId}"]`);
 
                     Swal.fire({
                         title: 'Are you sure?',
