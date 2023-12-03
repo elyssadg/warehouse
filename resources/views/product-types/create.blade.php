@@ -12,7 +12,7 @@
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <form class="form form-horizontal" method="POST" action="{{ route('product-types.store') }}">
+                    <form class="form form-horizontal" method="POST" action="{{ route('product-type.store') }}">
                         @csrf
                         <div class="form-body">
                             <div class="row">
@@ -25,7 +25,7 @@
                                         value="{{ old('product_type_name') }}">
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-between">
-                                    <a href="{{ route('product-types.index') }}"
+                                    <a href="{{ route('product-type.index') }}"
                                         class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     <button type="submit" class="btn btn-primary me-1 mb-1">Insert</button>
                                 </div>

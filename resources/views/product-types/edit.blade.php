@@ -13,7 +13,7 @@
             <div class="card-content">
                 <div class="card-body">
                     <form class="form form-horizontal" method="POST"
-                        action="{{ route('product-types.update', ['product_type' => $productType->id]) }}">
+                        action="{{ route('product-type.update', ['product_type' => $productType->id]) }}">
                         @csrf
                         @method('PUT')
                         <div class="form-body">
@@ -34,7 +34,7 @@
                                         value="{{ $productType->name }}">
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-between">
-                                    <a href="{{ route('product-types.index') }}"
+                                    <a href="{{ route('product-type.index') }}"
                                         class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     <button type="submit" class="btn btn-primary me-1 mb-1">Update</button>
                                 </div>

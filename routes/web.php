@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -31,7 +32,8 @@ Route::middleware('auth', 'verified')->group(function () {
         Route::resource('users', UserController::class);
     });
 
-    Route::resource('product-types', ProductTypeController::class);
+    Route::resource('product-type', ProductTypeController::class);
+    Route::resource('product', ProductController::class);
 });
 
 require __DIR__ . '/auth.php';
