@@ -70,8 +70,8 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active ">
-                            <a href="{{ route('login') }}" class='sidebar-link'>
+                        <li class="sidebar-item {{ request()->route()->getName() === 'dashboard' ? 'active' : '' }}">
+                            <a href="{{ route('dashboard') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -79,116 +79,95 @@
 
                         </li>
 
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
+                        <li class="sidebar-item has-sub {{ request()->routeIs('warehouse.*') ? 'active' : '' }}">
+                            <a href="#" class="sidebar-link">
                                 <i class="bi bi-stack"></i>
                                 <span>Warehouse</span>
                             </a>
 
-                            <ul class="submenu ">
-
-                                <li class="submenu-item  ">
+                            <ul class="submenu">
+                                <li class="submenu-item">
                                     <a href="component-accordion.html" class="submenu-link">Add</a>
-
                                 </li>
 
-                                <li class="submenu-item  ">
+                                <li class="submenu-item">
                                     <a href="component-alert.html" class="submenu-link">List</a>
-
                                 </li>
                             </ul>
-
-
                         </li>
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item  has-sub {{ request()->routeIs('product.*') ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Product</span>
                             </a>
 
-                            <ul class="submenu ">
-
-                                <li class="submenu-item  ">
+                            <ul class="submenu">
+                                <li class="submenu-item">
                                     <a href="extra-component-avatar.html" class="submenu-link">Add</a>
-
                                 </li>
 
-                                <li class="submenu-item  ">
+                                <li class="submenu-item ">
                                     <a href="extra-component-comment.html" class="submenu-link">List</a>
-
                                 </li>
-
                             </ul>
-
-
                         </li>
 
                         @if (Auth::user() && Auth::user()->user_role == 'Admin')
-                            <li class="sidebar-item  has-sub">
+                            <li class="sidebar-item  has-sub {{ request()->routeIs('users.*') ? 'active' : '' }}">
                                 <a href="#" class='sidebar-link'>
                                     <i class="bi bi-grid-1x2-fill"></i>
                                     <span>Users</span>
                                 </a>
 
-                                <ul class="submenu ">
-
-                                    <li class="submenu-item  ">
+                                <ul class="submenu">
+                                    <li class="submenu-item">
                                         <a href="layout-default.html" class="submenu-link">Add</a>
                                     </li>
 
-                                    <li class="submenu-item  ">
+                                    <li class="submenu-item">
                                         <a href="{{ route('users.index') }}" class="submenu-link">List</a>
                                     </li>
-
                                 </ul>
                             </li>
                         @endif
 
                         <li class="sidebar-title">Settings</li>
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item  has-sub {{ request()->routeIs('profile.*') ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-person-circle"></i>
                                 <span>Account</span>
                             </a>
 
-                            <ul class="submenu ">
-
-                                <li class="submenu-item  ">
+                            <ul class="submenu">
+                                <li class="submenu-item">
                                     <a href="account-profile.html" class="submenu-link">Profile</a>
-
                                 </li>
 
-                                <li class="submenu-item  ">
+                                <li class="submenu-item">
                                     <a href="account-security.html" class="submenu-link">Security</a>
-
                                 </li>
 
-                                <li class="submenu-item  ">
+                                <li class="submenu-item">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-
                                         <a :href="route('logout')"
                                             onclick="event.preventDefault();
-                                                            this.closest('form').submit();"
+                                                    this.closest('form').submit();"
                                             class="submenu-link">
                                             {{ __('Log Out') }}
                                         </a>
                                     </form>
                                     {{-- <a href="account-security.html" class="submenu-link">Logout</a> --}}
-
                                 </li>
-
                             </ul>
-
-
                         </li>
-
                     </ul>
                 </div>
             </div>
         </div>
+
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -196,7 +175,7 @@
                 </a>
             </header>
 
-            <div class="page-heading">
+            <div class="page-heading mb-2">
                 <h3>@yield('title')</h3>
             </div>
             <div class="page-content">

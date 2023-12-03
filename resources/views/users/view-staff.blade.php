@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('title', 'Staff')
+@section('title', 'Staff List')
 
 @section('custom-script')
     
@@ -9,9 +9,6 @@
 @section('content')
     <section class="section">
         <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Staff List</h4>
-            </div>
             <div class="card-content">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -56,21 +53,8 @@
             </div>
         </div>
     </section>
-
-    <div class="card-body">
-        <p>Change prev and next button into icon</p>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination pagination-primary">
-                <li class="page-item"><a class="page-link" href="#">
-                        <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-                    </a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">
-                        <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-                    </a></li>
-            </ul>
-        </nav>
+    
+    <div class="card-body d-flex align-items-center justify-content-center">
+        {{ $users->onEachSide(1)->links('pagination.custom') }}
     </div>
 @endsection
