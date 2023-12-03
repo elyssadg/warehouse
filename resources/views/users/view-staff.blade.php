@@ -46,7 +46,7 @@
                                                 <a href="">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
-                                                <a href="">
+                                                <a href="{{ url('users/destroy/'.$user->id) }}">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
                                             </div>
@@ -65,7 +65,7 @@
         </div>
     </section>
     
-    <div class="card-body d-flex align-items-center justify-content-end">
-        {{ $users->onEachSide(1)->links('pagination.custom') }}
+    <div class="card-body w-100 d-flex align-items-center justify-content-between">
+        {{ $users->links('pagination.custom') }}
     </div>
 @endsection

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('province');
             $table->string('postalcode');
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

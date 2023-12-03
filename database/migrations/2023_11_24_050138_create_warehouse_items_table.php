@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->primary(['warehouse_id', 'product_id']);
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
