@@ -111,6 +111,11 @@
                             <ul class="submenu ">
 
                                 <li class="submenu-item  ">
+                                    <a href="{{ route('product-types.index') }}" class="submenu-link">Types</a>
+
+                                </li>
+
+                                <li class="submenu-item  ">
                                     <a href="extra-component-avatar.html" class="submenu-link">Add</a>
 
                                 </li>
