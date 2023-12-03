@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ViewController extends Controller
@@ -17,18 +16,16 @@ class ViewController extends Controller
         }
     }
 
-    public function dashboard() {
-        $warehouseController = new WarehouseController();
-        $productTypeController = new ProductTypeController();
-        $productController = new ProductController();
-        $staffController = new UserController();
+    public function dashboard(WarehouseController $warehouseController, ProductTypeController $productTypeController, ProductController $productController, UserController $staffController, StockHistoryController $stockController)
+    {
 
         $totalWarehouse = $warehouseController->getTotalWarehouse();
         $totalCategory = $productTypeController->getTotalType();
         $totalProduct = $productController->getTotalProduct();
         $totalStaff = $staffController->getTotalStaff();
+        $monthlyData = $stockController->getItemYearlysStatistic();
+        $warehouse = $warehouseController->getAllWarehouse();
 
-        return view('dashboard', compact('totalWarehouse', 'totalCategory', 'totalProduct', 'totalStaff'));
+        return view('dashboard', compact('totalWarehouse', 'totalCategory', 'totalProduct', 'totalStaff', 'monthlyData', 'warehouse'));
     }
-
 }
