@@ -25,7 +25,8 @@ class ViewController extends Controller
         $totalStaff = $staffController->getTotalStaff();
         $monthlyData = $stockController->getItemYearlysStatistic();
         $warehouse = $warehouseController->getAllWarehouse();
+        $stockHistory = $stockController->getAllHistory();
 
-        return view('dashboard', compact('totalWarehouse', 'totalCategory', 'totalProduct', 'totalStaff', 'monthlyData', 'warehouse'));
+        return view('dashboard', compact('totalWarehouse', 'totalCategory', 'totalProduct', 'totalStaff', 'monthlyData', 'warehouse', 'stockHistory'));
     }
 }

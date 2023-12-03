@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Database\Factories\WarehouseItemFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class WarehouseItem extends Model
 {
     use HasFactory, SoftDeletes;
+
     /**
      * Create a new factory instance for the model.
      */
@@ -33,8 +34,8 @@ class WarehouseItem extends Model
 
         static::creating(function ($model) {
             $validator = validator($model->toArray(), [
-                'warehouse_id' => 'unique:warehouse_items,warehouse_id,NULL,NULL,product_id,' . $model->product_id,
-                'product_id' => 'unique:warehouse_items,product_id,NULL,NULL,warehouse_id,' . $model->warehouse_id,
+                'warehouse_id' => 'unique:warehouse_items,warehouse_id,NULL,NULL,product_id,'.$model->product_id,
+                'product_id' => 'unique:warehouse_items,product_id,NULL,NULL,warehouse_id,'.$model->warehouse_id,
             ]);
 
             if ($validator->fails()) {
@@ -43,12 +44,13 @@ class WarehouseItem extends Model
         });
     }
 
-    public function product() {
+    public function product()
+    {
         return $this->belongsTo(Product::class);
     }
 
-    public function warehouse() {
+    public function warehouse()
+    {
         return $this->belongsTo(Warehouse::class);
     }
-
 }

@@ -26,4 +26,11 @@ class StockHistoryController extends Controller
         return $monthlyData;
 
     }
+
+    public function getAllHistory()
+    {
+        $stockHistory = StockHistory::All();
+
+        return $stockHistory;
+    }
 }
