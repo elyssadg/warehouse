@@ -11,7 +11,7 @@ class StockHistoryController extends Controller
         $monthlyData = [];
         for ($i = 0; $i < 12; $i++) {
 
-            $data = StockHistory::whereMonth('insert_at', $i + 1)->get();
+            $data = StockHistory::whereMonth('created_at', $i + 1)->get();
 
             $totalIn = $data->where('transaction_type', 'insert')->sum('transaction_value');
             $totalOut = $data->where('transaction_type', 'retreive')->sum('transaction_value');
