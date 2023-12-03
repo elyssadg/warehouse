@@ -18,12 +18,12 @@
 
         <!-- Email Address -->
         <div class="form-group position-relative has-icon-left mb-4">
-            <input id="user_email" type="text" class="form-control form-control-xl" placeholder="Email"
-                type="user_email" name="user_email" :value="old('user_email')" required autocomplete="username">
+            <input id="email" type="text" class="form-control form-control-xl" placeholder="Email"
+                type="email" name="email" :value="old('email')" required autocomplete="username">
             <div class="form-control-icon">
                 <i class="bi bi-envelope"></i>
             </div>
-            <x-input-error :messages="$errors->get('user_email')" class="mt-2" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- DOB -->

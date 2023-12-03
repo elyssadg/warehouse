@@ -114,7 +114,7 @@
                             </ul>
                         </li>
 
-                        @if (Auth::user() && Auth::user()->user_role == 'Admin')
+                        @if (Auth::user() && Auth::user()->role == 'Admin')
                             <li class="sidebar-item  has-sub {{ request()->routeIs('users.*') ? 'active' : '' }}">
                                 <a href="#" class='sidebar-link'>
                                     <i class="bi bi-grid-1x2-fill"></i>

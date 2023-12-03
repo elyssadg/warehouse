@@ -19,9 +19,9 @@ class WarehouseFactory extends Factory
     {
         return [
             //
-            'warehouse_address' => fake()->address(),
-            'warehouse_city' => fake()->city(),
-            'warehouse_province' => fake()->randomElement([
+            'address' => fake()->address(),
+            'city' => fake()->city(),
+            'province' => fake()->randomElement([
                 'Aceh',
                 'Bali',
                 'Bangka Belitung',
@@ -57,7 +57,7 @@ class WarehouseFactory extends Factory
                 'Sumatera Barat',
                 'Yogyakarta',
             ]),
-            'warehouse_postalcode' => fake()->postcode(),
+            'postalcode' => fake()->postcode(),
             'created_at' => now()
 
         ];

@@ -18,8 +18,8 @@ class UserWarehouseFactory extends Factory
     {
         return [
             //
-            'warehouse_id' => fake()->numberBetween(1, 100),
-            'user_id' => fake()->numberBetween(1, 100),
+            'warehouse_id' => fake()->numberBetween(1, 50),
+            'user_id' => fake()->numberBetween(1, 50),
             'created_at' => now()
         ];
     }

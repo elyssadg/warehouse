@@ -13,11 +13,6 @@ class WarehouseItemSeeder extends Seeder
      */
     public function run(): void
     {
-        $dataCount = 5000;
-
-        do {
-            WarehouseItem::factory()->create();
-            $currentCount = WarehouseItem::count();
-        } while ($currentCount < $dataCount);
+        WarehouseItem::factory(1000)->create();
     }
 }
