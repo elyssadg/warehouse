@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('transaction_type');
             $table->integer('transaction_value');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

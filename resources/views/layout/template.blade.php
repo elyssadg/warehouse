@@ -107,8 +107,8 @@
                             </a>
 
                             <ul class="submenu">
-
                                 <li class="submenu-item  ">
+
                                     <a href="{{ route('product-type.index') }}" class="submenu-link"
                                         style="{{ request()->route()->getName() === 'product-type.index'? 'color: #435ebe; font-weight: 700;': '' }}">Types</a>
 
