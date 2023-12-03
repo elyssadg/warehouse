@@ -88,11 +88,11 @@
 
                             <ul class="submenu">
                                 <li class="submenu-item">
-                                    <a href="component-accordion.html" class="submenu-link">Add</a>
+                                    <a href="component-accordion.html" class="submenu-link" style="{{ request()->route()->getName() === 'warehouse.store' ? 'color: #435ebe; font-weight: 700;' : '' }}">Add</a>
                                 </li>
 
                                 <li class="submenu-item">
-                                    <a href="component-alert.html" class="submenu-link">List</a>
+                                    <a href="component-alert.html" class="submenu-link" style="{{ request()->route()->getName() === 'warehouse.index' ? 'color: #435ebe; font-weight: 700;' : '' }}">List</a>
                                 </li>
                             </ul>
                         </li>
@@ -105,11 +105,11 @@
 
                             <ul class="submenu">
                                 <li class="submenu-item">
-                                    <a href="extra-component-avatar.html" class="submenu-link">Add</a>
+                                    <a href="extra-component-avatar.html" class="submenu-link" style="{{ request()->route()->getName() === 'product.store' ? 'color: #435ebe; font-weight: 700;' : '' }}">Add</a>
                                 </li>
 
                                 <li class="submenu-item ">
-                                    <a href="extra-component-comment.html" class="submenu-link">List</a>
+                                    <a href="extra-component-comment.html" class="submenu-link" style="{{ request()->route()->getName() === 'product.index' ? 'color: #435ebe; font-weight: 700;' : '' }}">List</a>
                                 </li>
                             </ul>
                         </li>
@@ -123,11 +123,15 @@
 
                                 <ul class="submenu">
                                     <li class="submenu-item">
-                                        <a href="layout-default.html" class="submenu-link">Add</a>
+                                        <a href="layout-default.html" class="submenu-link" style="{{ request()->route()->getName() === 'users.store' ? 'color: #435ebe; font-weight: 700;' : '' }}">
+                                            Add
+                                        </a>
                                     </li>
 
                                     <li class="submenu-item">
-                                        <a href="{{ route('users.index') }}" class="submenu-link">List</a>
+                                        <a href="{{ route('users.index') }}" class="submenu-link" style="{{ request()->route()->getName() === 'users.index' ? 'color: #435ebe; font-weight: 700;' : '' }}">
+                                            List
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
