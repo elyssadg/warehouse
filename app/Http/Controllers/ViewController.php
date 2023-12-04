@@ -27,7 +27,7 @@ class ViewController extends Controller
         $warehouse = $warehouseController->getAllWarehouse();
         $stockHistory = $stockController->getAllHistory();
         $activity = $stockController->getTopWarehousesPerformanceAndTransactions();
-        // dd($activity);
+
         return view('dashboard', compact('totalWarehouse', 'totalCategory', 'totalProduct', 'totalStaff', 'monthlyData', 'warehouse', 'stockHistory', 'activity'));
     }
 }

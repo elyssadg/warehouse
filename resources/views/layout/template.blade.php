@@ -207,7 +207,7 @@
                         <p>2023 &copy; StoreEase</p>
                     </div>
                     <div class="float-end">
-                        <p>Template crafted by <a href="https://saugi.me">Saugi</a></p>
+                        <p>Created by <a href="">FEGEA</a></p>
                     </div>
                 </div>
             </footer>

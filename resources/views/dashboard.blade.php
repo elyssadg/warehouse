@@ -215,9 +215,6 @@
             return item.monthly_data
         });
 
-        console.log(city[0]['warehouse']['city'])
-        console.log(activityData[0])
-
 		var inDatas = monthlyData.map(function(item) {
 			return item.total_in;
 		});
@@ -474,7 +471,7 @@
         var option4 = {
 			series: [{
 				name: "series1",
-				data: activityData[4],
+				data: activityData[3],
 			}, ],
 			chart: {
 				height: 80,

@@ -69,7 +69,7 @@ class StockHistoryController extends Controller
             ->selectRaw('COUNT(*) as appearance_count')
             ->groupBy('warehouse_id')
             ->orderByDesc('appearance_count')
-            ->take(5)
+            ->take(4)
             ->get();
 
         return $topWarehouses;
