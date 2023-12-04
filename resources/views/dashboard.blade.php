@@ -175,70 +175,24 @@
 					<h4>Warehouse Activity</h4>
 				</div>
 				<div class="card-body">
-					<div class="row">
-						<div class="col-7">
-							<div class="d-flex align-items-center">
-								<svg class="bi text-primary" width="32" height="32" fill="blue" style="width:10px">
-									<use xlink:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
-								</svg>
-								<h5 class="mb-0 ms-3">Europe</h5>
-							</div>
-						</div>
-						<div class="col-5">
-							<h5 class="mb-0 text-end">862</h5>
-						</div>
-						<div class="col-12">
-							<div id="chart-europe"></div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-7">
-							<div class="d-flex align-items-center">
-								<svg class="bi text-success" width="32" height="32" fill="blue" style="width:10px">
-									<use xlink:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
-								</svg>
-								<h5 class="mb-0 ms-3">America</h5>
-							</div>
-						</div>
-						<div class="col-5">
-							<h5 class="mb-0 text-end">375</h5>
-						</div>
-						<div class="col-12">
-							<div id="chart-america"></div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-7">
-							<div class="d-flex align-items-center">
-								<svg class="bi text-success" width="32" height="32" fill="blue" style="width:10px">
-									<use xlink:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
-								</svg>
-								<h5 class="mb-0 ms-3">India</h5>
-							</div>
-						</div>
-						<div class="col-5">
-							<h5 class="mb-0 text-end">625</h5>
-						</div>
-						<div class="col-12">
-							<div id="chart-india"></div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-7">
-							<div class="d-flex align-items-center">
-								<svg class="bi text-danger" width="32" height="32" fill="blue" style="width:10px">
-									<use xlink:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
-								</svg>
-								<h5 class="mb-0 ms-3">Indonesia</h5>
-							</div>
-						</div>
-						<div class="col-5">
-							<h5 class="mb-0 text-end">1025</h5>
-						</div>
-						<div class="col-12">
-							<div id="chart-indonesia"></div>
-						</div>
-					</div>
+                    @foreach ($activity as $act)
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="d-flex align-items-center">
+                                    <svg class="bi text-primary" width="32" height="32" fill="blue" style="width:10px">
+                                        <use xlink:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
+                                    </svg>
+                                    <h5 class="mb-0 ms-3">{{$act['warehouseDetail']->warehouse->city}}</h5>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <h5 class="mb-0 text-end">{{$act['transaction_per_year']}}</h5>
+                            </div>
+                            <div class="col-12">
+                                <div id="chart-{{$act['warehouseDetail']->warehouse->city}}"></div>
+                            </div>
+                        </div>
+                    @endforeach
 				</div>
 			</div>
 		</div>
@@ -251,7 +205,18 @@
 	{{-- <script src="dist/assets/static/js/pages/dashboard.js"></script> --}}
 	<script>
 		var monthlyData = {!! json_encode($monthlyData) !!};
-		var monthlyData = {!! json_encode($monthlyData) !!};
+        var activity = {!! json_encode($activity) !!};
+
+        var city = activity.map(function(item) {
+            return item.warehouseDetail
+        });
+
+        var activityData = activity.map(function(item) {
+            return item.monthly_data
+        });
+
+        console.log(city[0]['warehouse']['city'])
+        console.log(activityData[0])
 
 		var inDatas = monthlyData.map(function(item) {
 			return item.total_in;
@@ -261,13 +226,6 @@
 			return item.total_out;
 		});
 
-		var combinedData = monthlyData.map(function(item, index) {
-			return {
-				x: item.month,
-				y: [inDatas[index], outDatas[index]]
-			};
-		});
-		console.log(combinedData)
 		var optionsItemYearly = {
 			annotations: {
 				position: "back",
@@ -330,31 +288,10 @@
 			},
 		}
 
-		let optionsVisitorsProfile = {
-			series: [70, 30],
-			labels: ["Male", "Female"],
-			colors: ["#435ebe", "#55c6e8"],
-			chart: {
-				type: "donut",
-				width: "100%",
-				height: "350px",
-			},
-			legend: {
-				position: "bottom",
-			},
-			plotOptions: {
-				pie: {
-					donut: {
-						size: "30%",
-					},
-				},
-			},
-		}
-
-		var optionsEurope = {
+		var option1 = {
 			series: [{
 				name: "series1",
-				data: [310, 800, 600, 430, 540, 340, 605, 805, 430, 540, 340, 605],
+				data: activityData[0],
 			}, ],
 			chart: {
 				height: 80,
@@ -412,49 +349,214 @@
 			},
 		}
 
-		let optionsAmerica = {
-			...optionsEurope,
-			colors: ["#008b75"],
+		var option2 = {
+			series: [{
+				name: "series1",
+				data: activityData[1],
+			}, ],
+			chart: {
+				height: 80,
+				type: "area",
+				toolbar: {
+					show: false,
+				},
+			},
+			colors: ["#5350e9"],
+			stroke: {
+				width: 2,
+			},
+			grid: {
+				show: false,
+			},
+			dataLabels: {
+				enabled: false,
+			},
+			xaxis: {
+				type: "datetime",
+				categories: [
+					"2018-09-19T00:00:00.000Z",
+					"2018-09-19T01:30:00.000Z",
+					"2018-09-19T02:30:00.000Z",
+					"2018-09-19T03:30:00.000Z",
+					"2018-09-19T04:30:00.000Z",
+					"2018-09-19T05:30:00.000Z",
+					"2018-09-19T06:30:00.000Z",
+					"2018-09-19T07:30:00.000Z",
+					"2018-09-19T08:30:00.000Z",
+					"2018-09-19T09:30:00.000Z",
+					"2018-09-19T10:30:00.000Z",
+					"2018-09-19T11:30:00.000Z",
+				],
+				axisBorder: {
+					show: false,
+				},
+				axisTicks: {
+					show: false,
+				},
+				labels: {
+					show: false,
+				},
+			},
+			show: false,
+			yaxis: {
+				labels: {
+					show: false,
+				},
+			},
+			tooltip: {
+				x: {
+					format: "dd/MM/yy HH:mm",
+				},
+			},
 		}
-		let optionsIndia = {
-			...optionsEurope,
-			colors: ["#ffc434"],
+
+        var option3 = {
+			series: [{
+				name: "series1",
+				data: activityData[2],
+			}, ],
+			chart: {
+				height: 80,
+				type: "area",
+				toolbar: {
+					show: false,
+				},
+			},
+			colors: ["#5350e9"],
+			stroke: {
+				width: 2,
+			},
+			grid: {
+				show: false,
+			},
+			dataLabels: {
+				enabled: false,
+			},
+			xaxis: {
+				type: "datetime",
+				categories: [
+					"2018-09-19T00:00:00.000Z",
+					"2018-09-19T01:30:00.000Z",
+					"2018-09-19T02:30:00.000Z",
+					"2018-09-19T03:30:00.000Z",
+					"2018-09-19T04:30:00.000Z",
+					"2018-09-19T05:30:00.000Z",
+					"2018-09-19T06:30:00.000Z",
+					"2018-09-19T07:30:00.000Z",
+					"2018-09-19T08:30:00.000Z",
+					"2018-09-19T09:30:00.000Z",
+					"2018-09-19T10:30:00.000Z",
+					"2018-09-19T11:30:00.000Z",
+				],
+				axisBorder: {
+					show: false,
+				},
+				axisTicks: {
+					show: false,
+				},
+				labels: {
+					show: false,
+				},
+			},
+			show: false,
+			yaxis: {
+				labels: {
+					show: false,
+				},
+			},
+			tooltip: {
+				x: {
+					format: "dd/MM/yy HH:mm",
+				},
+			},
 		}
-		let optionsIndonesia = {
-			...optionsEurope,
-			colors: ["#dc3545"],
+
+        var option4 = {
+			series: [{
+				name: "series1",
+				data: activityData[4],
+			}, ],
+			chart: {
+				height: 80,
+				type: "area",
+				toolbar: {
+					show: false,
+				},
+			},
+			colors: ["#5350e9"],
+			stroke: {
+				width: 2,
+			},
+			grid: {
+				show: false,
+			},
+			dataLabels: {
+				enabled: false,
+			},
+			xaxis: {
+				type: "datetime",
+				categories: [
+					"2018-09-19T00:00:00.000Z",
+					"2018-09-19T01:30:00.000Z",
+					"2018-09-19T02:30:00.000Z",
+					"2018-09-19T03:30:00.000Z",
+					"2018-09-19T04:30:00.000Z",
+					"2018-09-19T05:30:00.000Z",
+					"2018-09-19T06:30:00.000Z",
+					"2018-09-19T07:30:00.000Z",
+					"2018-09-19T08:30:00.000Z",
+					"2018-09-19T09:30:00.000Z",
+					"2018-09-19T10:30:00.000Z",
+					"2018-09-19T11:30:00.000Z",
+				],
+				axisBorder: {
+					show: false,
+				},
+				axisTicks: {
+					show: false,
+				},
+				labels: {
+					show: false,
+				},
+			},
+			show: false,
+			yaxis: {
+				labels: {
+					show: false,
+				},
+			},
+			tooltip: {
+				x: {
+					format: "dd/MM/yy HH:mm",
+				},
+			},
 		}
 
 		var chartItemYearly = new ApexCharts(
 			document.querySelector("#chart-item-yearly"),
 			optionsItemYearly
 		)
-		var chartVisitorsProfile = new ApexCharts(
-			document.getElementById("chart-visitors-profile"),
-			optionsVisitorsProfile
+		var chart1 = new ApexCharts(
+			document.querySelector("#chart-"+city[0]['warehouse']['city']),
+			option1
 		)
-		var chartEurope = new ApexCharts(
-			document.querySelector("#chart-europe"),
-			optionsEurope
+		var chart2 = new ApexCharts(
+			document.querySelector("#chart-"+city[1]['warehouse']['city']),
+			option2
 		)
-		var chartAmerica = new ApexCharts(
-			document.querySelector("#chart-america"),
-			optionsAmerica
+		var chart3 = new ApexCharts(
+			document.querySelector("#chart-"+city[2]['warehouse']['city']),
+			option3
 		)
-		var chartIndia = new ApexCharts(
-			document.querySelector("#chart-india"),
-			optionsIndia
-		)
-		var chartIndonesia = new ApexCharts(
-			document.querySelector("#chart-indonesia"),
-			optionsIndonesia
+		var chart4 = new ApexCharts(
+			document.querySelector("#chart-"+city[3]['warehouse']['city']),
+			option4
 		)
 
-		chartIndonesia.render()
-		chartAmerica.render()
-		chartIndia.render()
-		chartEurope.render()
+		chart4.render()
+		chart2.render()
+		chart3.render()
+		chart1.render()
 		chartItemYearly.render()
-		chartVisitorsProfile.render()
 	</script>
 @endsection
