@@ -93,7 +93,7 @@
                                 </li>
 
                                 <li class="submenu-item">
-                                    <a href="component-alert.html" class="submenu-link"
+                                    <a href="{{ route('warehouse.index') }}" class="submenu-link"
                                         style="{{ request()->route()->getName() === 'warehouse.index'? 'color: #435ebe; font-weight: 700;': '' }}">List</a>
                                 </li>
                             </ul>

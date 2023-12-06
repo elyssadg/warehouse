@@ -28,14 +28,16 @@ class WarehouseItem extends Model
 
     protected $fillable = ['warehouse_id', 'product_id', 'stock', 'created_at'];
 
+    protected $dates = ['deleted_at', 'updated_at'];
+
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($model) {
             $validator = validator($model->toArray(), [
-                'warehouse_id' => 'unique:warehouse_items,warehouse_id,NULL,NULL,product_id,'.$model->product_id,
-                'product_id' => 'unique:warehouse_items,product_id,NULL,NULL,warehouse_id,'.$model->warehouse_id,
+                'warehouse_id' => 'unique:warehouse_items,warehouse_id,NULL,NULL,product_id,' . $model->product_id,
+                'product_id' => 'unique:warehouse_items,product_id,NULL,NULL,warehouse_id,' . $model->warehouse_id,
             ]);
 
             if ($validator->fails()) {
@@ -52,5 +54,14 @@ class WarehouseItem extends Model
     public function warehouse()
     {
         return $this->belongsTo(Warehouse::class);
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        list($warehouseId, $productId) = explode(' ', $value);
+
+        return $this->where('warehouse_id', $warehouseId)
+            ->where('product_id', $productId)
+            ->first();
     }
 }

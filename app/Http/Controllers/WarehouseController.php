@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Warehouse;
+use App\Models\WarehouseItem;
 use Illuminate\Http\Request;
 
 class WarehouseController extends Controller
@@ -13,6 +14,8 @@ class WarehouseController extends Controller
     public function index()
     {
         //
+        $warehouses = Warehouse::paginate(15);
+        return view('warehouse.index')->with('warehouses', $warehouses);
     }
 
     /**
@@ -37,6 +40,9 @@ class WarehouseController extends Controller
     public function show(string $id)
     {
         //
+        $warehouse = Warehouse::find($id);
+        $products = WarehouseItem::where('warehouse_id', $id)->paginate(10);
+        return view('warehouse.show')->with('warehouse', $warehouse)->with('products', $products);
     }
 
     /**

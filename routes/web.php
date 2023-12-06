@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\WarehouseItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,12 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::resource('product-type', ProductTypeController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('warehouse', WarehouseController::class);
+
+    Route::post('warehouse-item/{warehouse_id}/search', [WarehouseItemController::class, 'searchItemByName'])->name('warehouse-item.search');
+    Route::get('warehouse-item/{warehouse_id}/create', [WarehouseItemController::class, 'create'])->name('warehouse-item.create');
+    Route::POST('warehouse-item/{warehouse_id}', [WarehouseItemController::class, 'store'])->name('warehouse-item.store');
+    Route::resource('warehouse-item', WarehouseItemController::class)->except(['create', 'index', 'store']);
 });
 
 require __DIR__ . '/auth.php';
