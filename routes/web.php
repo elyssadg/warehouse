@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductTypeController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\WarehouseController;
@@ -24,10 +24,9 @@ Route::get('/login', [ViewController::class, 'login'])->name('login');
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/', [ViewController::class, 'dashboard'])->name('dashboard');
-
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('product-type', ProductTypeController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('account', AccountController::class);
 
     Route::middleware('admin')->group(function () {
         Route::resource('users', UserController::class);
