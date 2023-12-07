@@ -50,11 +50,11 @@
                                                             class="bi bi-pencil-square" role="button"></i>
                                                         <span class="d-none d-lg-inline">Edit</span></a>
                                                     <a class="text-danger deleteButton"
-                                                        data-product-id="{{ $warehouse->id }}" role="button"><i
+                                                        data-warehouse-id="{{ $warehouse->id }}" role="button"><i
                                                             class="bi bi-trash"></i>
                                                         <span class="d-none d-lg-inline">Delete</span></a>
-                                                    <form class="deleteForm" data-product-id="{{ $warehouse->id }}"
-                                                        action="{{ route('warehouse-item.destroy', ['warehouse_item' => $warehouse->id]) }}"
+                                                    <form class="deleteForm" data-warehouse-id="{{ $warehouse->id }}"
+                                                        action="{{ route('warehouse.destroy', ['warehouse' => $warehouse->id]) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -82,9 +82,9 @@
             const deleteButtons = document.querySelectorAll('.deleteButton');
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const userId = this.getAttribute('data-user-id');
+                    const warehouseId = this.getAttribute('data-warehouse-id');
                     const deleteForm = document.querySelector(
-                        `.deleteForm[data-user-id="${userId}"]`);
+                        `.deleteForm[data-warehouse-id="${warehouseId}"]`);
                     Swal.fire({
                         title: 'Are you sure?',
                         text: 'You won\'t be able to revert this!',

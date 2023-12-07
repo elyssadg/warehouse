@@ -171,20 +171,19 @@ class WarehouseController extends Controller
     public function destroy(string $id)
     {
         //
+        $warehouse = Warehouse::find($id);
+        $warehouse->delete();
+        return redirect()->route('warehouse.index')->with('success', 'Warehouse deleted successfully.');
     }
 
     public function getTotalWarehouse()
     {
-        $totalWarehouse = Warehouse::all()->count();
-
-        return $totalWarehouse;
+        return Warehouse::all()->count();
     }
 
     public function getAllWarehouse()
     {
-        $warehouse = Warehouse::all();
-
-        return $warehouse;
+        return Warehouse::all();
     }
 
     public function searchItemByName(Request $request, string $warehouse_id)
