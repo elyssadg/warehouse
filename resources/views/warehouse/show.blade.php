@@ -73,7 +73,8 @@
             <form action="{{ route('warehouse-item.search', ['warehouse_id' => $warehouse->id]) }}" method="POST">
                 @csrf
                 <div class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control" name="product_name" placeholder="Search Product Name">
+                    <input type="text" class="form-control" name="product_name" placeholder="Search Product Name"
+                        value="{{ isset($productName) ? $productName : old('product_name') }}">
                     <div class="form-control-icon">
                         <i class="bi bi-search"></i>
                     </div>
@@ -138,7 +139,6 @@
                     </tbody>
                 </table>
                 {{ $products->links() }}
-
             </div>
         </div>
     </div>

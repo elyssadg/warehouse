@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Warehouse;
 use App\Models\WarehouseItem;
 use Illuminate\Http\Request;
@@ -184,5 +185,28 @@ class WarehouseController extends Controller
         $warehouse = Warehouse::all();
 
         return $warehouse;
+    }
+
+    public function searchItemByName(Request $request, string $warehouse_id)
+    {
+        $request->validate([
+            'product_name' => 'nullable|string', // Add more rules as needed
+        ]);
+        if (!$request->filled('product_name')) {
+            // If 'product_name' is empty or not present, redirect to show route
+            return redirect()->route('warehouse.show', ['warehouse' => $warehouse_id]);
+        }
+        $warehouse = Warehouse::find($warehouse_id);
+        $productName = $request->product_name;
+
+        $products = WarehouseItem::where('warehouse_id', $warehouse_id)
+            ->whereHas('product', function ($query) use ($productName) {
+                $query->where('name', 'like', $productName . '%');
+            })
+            ->paginate(100);
+
+        // Append the search input to pagination links
+        $products->appends(['product_name' => $productName]);
+        return view('warehouse.show', compact('warehouse', 'products'))->with('productName', $productName);
     }
 }

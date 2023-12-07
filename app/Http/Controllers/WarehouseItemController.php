@@ -31,7 +31,6 @@ class WarehouseItemController extends Controller
             ->whereNull('warehouse_items.product_id')
             ->orderBy('products.name', 'asc')
             ->get();
-        // dd($products);
         return view('warehouse-item.create', compact('warehouse', 'products'));
     }
 
@@ -112,21 +111,5 @@ class WarehouseItemController extends Controller
         } else {
             return redirect()->route('warehouse.show', ['warehouse' => $warehouse_id])->with('error', 'Product not found.');
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function searchItemByName(Request $request, string $warehouse_id)
-    {
-        $warehouse = Warehouse::find($warehouse_id);
-
-        $productName = $request->product_name; // Replace with the actual product name you're searching for
-
-        $products = WarehouseItem::whereHas('product', function ($query) use ($productName) {
-            $query->where('name', 'like', '%' . $productName . '%');
-        })->paginate(10);
-
-        return view('warehouse.show')->with('warehouse', $warehouse)->with('products', $products);
     }
 }

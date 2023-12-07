@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('title', 'Manage Warehouse Item')
+@section('title', 'Manage Warehouse')
 
 @section('content')
     <section class="section">

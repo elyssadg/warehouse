@@ -88,7 +88,7 @@
 
                             <ul class="submenu">
                                 <li class="submenu-item">
-                                    <a href="component-accordion.html" class="submenu-link"
+                                    <a href="{{ route('warehouse.create') }}" class="submenu-link"
                                         style="{{ request()->route()->getName() === 'warehouse.store'? 'color: #435ebe; font-weight: 700;': '' }}">Add</a>
                                 </li>
 
@@ -161,14 +161,15 @@
                             <ul class="submenu">
                                 <li class="submenu-item">
                                     <a href="{{ route('account.index') }}" class="submenu-link"
-                                    style="{{ request()->route()->getName() === 'account.index' ? 'color: #435ebe; font-weight: 700;': '' }}">
+                                        style="{{ request()->route()->getName() === 'account.index'? 'color: #435ebe; font-weight: 700;': '' }}">
                                         Profile
                                     </a>
                                 </li>
 
                                 <li class="submenu-item">
-                                    <a href="{{ route('account.edit', ['account' => Auth::user()->id]) }}" class="submenu-link"
-                                        style="{{ request()->route()->getName() === 'account.edit' ? 'color: #435ebe; font-weight: 700;': '' }}">
+                                    <a href="{{ route('account.edit', ['account' => Auth::user()->id]) }}"
+                                        class="submenu-link"
+                                        style="{{ request()->route()->getName() === 'account.edit'? 'color: #435ebe; font-weight: 700;': '' }}">
                                         Security
                                     </a>
                                 </li>
