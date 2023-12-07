@@ -49,17 +49,18 @@
                                                         href="{{ route('warehouse.edit', ['warehouse' => $warehouse->id]) }}"><i
                                                             class="bi bi-pencil-square" role="button"></i>
                                                         <span class="d-none d-lg-inline">Edit</span></a>
-                                                    <a class="text-danger deleteButton"
-                                                        data-warehouse-id="{{ $warehouse->id }}" role="button"><i
-                                                            class="bi bi-trash"></i>
-                                                        <span class="d-none d-lg-inline">Delete</span></a>
-                                                    <form class="deleteForm" data-warehouse-id="{{ $warehouse->id }}"
-                                                        action="{{ route('warehouse.destroy', ['warehouse' => $warehouse->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-
+                                                    @if (Auth::user() && Auth::user()->role == 'Admin')
+                                                        <a class="text-danger deleteButton"
+                                                            data-warehouse-id="{{ $warehouse->id }}" role="button"><i
+                                                                class="bi bi-trash"></i>
+                                                            <span class="d-none d-lg-inline">Delete</span></a>
+                                                        <form class="deleteForm" data-warehouse-id="{{ $warehouse->id }}"
+                                                            action="{{ route('warehouse.destroy', ['warehouse' => $warehouse->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>

@@ -87,11 +87,13 @@
                             </a>
 
                             <ul class="submenu">
-                                <li class="submenu-item">
-                                    <a href="{{ route('warehouse.create') }}" class="submenu-link"
-                                        style="{{ request()->route()->getName() === 'warehouse.store'? 'color: #435ebe; font-weight: 700;': '' }}">Add</a>
-                                </li>
-
+                                @if (Auth::user() && Auth::user()->role == 'Admin')
+                                    <li class="submenu-item">
+                                        <a href="{{ route('warehouse.create') }}" class="submenu-link"
+                                            style="{{ request()->route()->getName() === 'warehouse.store'? 'color: #435ebe; font-weight: 700;': '' }}">Add</a>
+                                    </li>
+                                @endif
+                                    
                                 <li class="submenu-item">
                                     <a href="{{ route('warehouse.index') }}" class="submenu-link"
                                         style="{{ request()->route()->getName() === 'warehouse.index'? 'color: #435ebe; font-weight: 700;': '' }}">List</a>
