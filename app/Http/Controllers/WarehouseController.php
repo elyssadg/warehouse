@@ -51,6 +51,44 @@ class WarehouseController extends Controller
     public function edit(string $id)
     {
         //
+        $warehouse = Warehouse::find($id);
+        $provinces = [
+            'Aceh',
+            'Bali',
+            'Bangka Belitung',
+            'Banten',
+            'Bengkulu',
+            'Jawa Tengah',
+            'Kalimantan Tengah',
+            'Sulawesi Tengah',
+            'Jawa Timur',
+            'Kalimantan Timur',
+            'Nusa Tenggara Timur',
+            'Gorontalo',
+            'DKI Jakarta',
+            'Jambi',
+            'Lampung',
+            'Maluku',
+            'Kalimantan Utara',
+            'Maluku Utara',
+            'Sulawesi Utara',
+            'Sumatera Utara',
+            'Papua',
+            'Riau',
+            'Kepulauan Riau',
+            'Kalimantan Selatan',
+            'Sulawesi Selatan',
+            'Sumatera Selatan',
+            'Sulawesi Tenggara',
+            'Jawa Barat',
+            'Kalimantan Barat',
+            'Nusa Tenggara Barat',
+            'Papua Barat',
+            'Sulawesi Barat',
+            'Sumatera Barat',
+            'Yogyakarta',
+        ];
+        return view('warehouse.edit', compact('warehouse', 'provinces'));
     }
 
     /**
@@ -59,6 +97,20 @@ class WarehouseController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'province' => 'required',
+            'city' => 'required | min:3',
+            'address' => 'required | min:5',
+            'postalcode' => 'required | min:4',
+        ]);
+        $warehouse = Warehouse::find($id);
+
+        $warehouse->province = $request->province;
+        $warehouse->city = $request->city;
+        $warehouse->address = $request->address;
+        $warehouse->postalcode = $request->postalcode;
+        $warehouse->save();
+        return redirect()->route('warehouse.show', ['warehouse' => $id]);
     }
 
     /**
