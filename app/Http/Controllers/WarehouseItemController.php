@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\StockHistory;
 use App\Models\Warehouse;
 use App\Models\WarehouseItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WarehouseItemController extends Controller
 {
@@ -50,6 +52,15 @@ class WarehouseItemController extends Controller
             'warehouse_id' => $warehouse_id,
             'product_id' => $product_id,
             'stock' => $stock
+        ]);
+
+        $stock_history = StockHistory::create([
+            'warehouse_id' => $warehouse_id,
+            'product_id' => $product_id,
+            'user_id' => Auth::getUser()->id,
+            'current_stock' => $stock,
+            'transaction_type' => 'insert',
+            'transaction_value' => $stock
         ]);
 
         return redirect()->route('warehouse.show', ['warehouse' => $warehouse_id]);
