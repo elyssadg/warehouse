@@ -17,11 +17,22 @@ class WarehouseItemFactory extends Factory
      */
     public function definition(): array
     {
+        $warehouseIds = WarehouseItem::pluck('warehouse_id')->toArray();
+        $productIds = WarehouseItem::pluck('product_id')->toArray();
+
+        // Generate unique warehouse and product IDs
         do {
             $warehouseId = fake()->numberBetween(1, 50);
+        } while (in_array($warehouseId, $warehouseIds));
+
+        do {
             $productId = fake()->numberBetween(1, 100);
-        } while (WarehouseItem::where('warehouse_id', $warehouseId)->where('product_id', $productId)->exists());
-        
+        } while (in_array($productId, $productIds));
+
+        // Store the generated warehouse and product IDs
+        $warehouseIds[] = $warehouseId;
+        $productIds[] = $productId;
+
         return [
             'warehouse_id' => $warehouseId,
             'product_id' => $productId,
