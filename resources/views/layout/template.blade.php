@@ -93,7 +93,7 @@
                                 </li>
 
                                 <li class="submenu-item">
-                                    <a href="component-alert.html" class="submenu-link"
+                                    <a href="{{ route('warehouse.index') }}" class="submenu-link"
                                         style="{{ request()->route()->getName() === 'warehouse.index'? 'color: #435ebe; font-weight: 700;': '' }}">List</a>
                                 </li>
                             </ul>
@@ -152,7 +152,7 @@
 
                         <li class="sidebar-title">Settings</li>
 
-                        <li class="sidebar-item  has-sub {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                        <li class="sidebar-item  has-sub {{ request()->routeIs('account.*') ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-person-circle"></i>
                                 <span>Account</span>
@@ -160,11 +160,17 @@
 
                             <ul class="submenu">
                                 <li class="submenu-item">
-                                    <a href="account-profile.html" class="submenu-link">Profile</a>
+                                    <a href="{{ route('account.index') }}" class="submenu-link"
+                                    style="{{ request()->route()->getName() === 'account.index' ? 'color: #435ebe; font-weight: 700;': '' }}">
+                                        Profile
+                                    </a>
                                 </li>
 
                                 <li class="submenu-item">
-                                    <a href="account-security.html" class="submenu-link">Security</a>
+                                    <a href="{{ route('account.edit', ['account' => Auth::user()->id]) }}" class="submenu-link"
+                                        style="{{ request()->route()->getName() === 'account.edit' ? 'color: #435ebe; font-weight: 700;': '' }}">
+                                        Security
+                                    </a>
                                 </li>
                             </ul>
                         </li>
