@@ -166,7 +166,7 @@
 						</div>
 					@endfor
 					<div class="px-4">
-						<button class='mt-3 font-bold btn btn-block btn-xl btn-outline-primary'>View More</button>
+						<a href="{{route('warehouse.index')}}" class='mt-3 font-bold btn btn-block btn-xl btn-outline-primary'>View More</a>
 					</div>
 				</div>
 			</div>
