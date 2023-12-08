@@ -106,27 +106,27 @@
 										</tr>
 									</thead>
 									<tbody>
-										@for ($i = 0; $i < 4; $i++)
-											<tr>
-												<td class="col-3">
-													<div class="d-flex align-items-center">
-														<div class="avatar avatar-md">
-															<img src="dist/assets/compiled/jpg/{{ $i + 1 }}.jpg">
-														</div>
-														<p class="mb-0 font-bold ms-3">{{ $stockHistory[$i]->product->name }}</p>
-													</div>
-												</td>
-												<td class="col-auto">
-													<p class="mb-0">{{ $stockHistory[$i]->warehouse->city }}</p>
-												</td>
-												<td class="col-auto">
-													<p class="mb-0">{{ $stockHistory[$i]->transaction_value }}</p>
-												</td>
-												<td class="col-auto">
-													<p class="mb-0">{{ $stockHistory[$i]->created_at }}</p>
-												</td>
-											</tr>
-										@endfor
+                                        @for ($i = 0; $i < 4; $i++)
+                                        <tr onclick="window.location='product/{{$stockHistory[$i]->product->id}}';" style="cursor: pointer;">
+                                            <td class="col-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar avatar-md">
+                                                                <img src="dist/assets/compiled/jpg/{{ $i + 1 }}.jpg">
+                                                            </div>
+                                                            <p class="mb-0 font-bold ms-3">{{ $stockHistory[$i]->product->name }}</p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="col-auto">
+                                                        <p class="mb-0">{{ $stockHistory[$i]->warehouse->city }}</p>
+                                                    </td>
+                                                    <td class="col-auto">
+                                                        <p class="mb-0">{{ $stockHistory[$i]->transaction_value }}</p>
+                                                    </td>
+                                                    <td class="col-auto">
+                                                        <p class="mb-0">{{ $stockHistory[$i]->created_at }}</p>
+                                                    </td>
+                                                </tr>
+                                            @endfor
 									</tbody>
 								</table>
 							</div>
@@ -155,7 +155,7 @@
 				</div>
 				<div class="pb-4 card-content">
 					@for ($i = 0; $i < 3; $i++)
-						<div class="px-4 py-3 recent-message d-flex">
+						<div onclick="window.location='warehouse/{{$warehouse[$i]->id}}';" style="cursor: pointer;" class="px-4 py-3 recent-message d-flex">
 							<div class="avatar avatar-lg">
 								<img src="dist/assets/compiled/jpg/{{ $i + 1 }}.jpg">
 							</div>
@@ -165,8 +165,8 @@
 							</div>
 						</div>
 					@endfor
-					<div class="px-4">
-						<a href="{{route('warehouse.index')}}" class='mt-3 font-bold btn btn-block btn-xl btn-outline-primary'>View More</a>
+					<div class="px-4" onclick="window.location='warehouse';" style="cursor: pointer;">
+						<button class='mt-3 font-bold btn btn-block btn-xl btn-outline-primary'>View More</button>
 					</div>
 				</div>
 			</div>
