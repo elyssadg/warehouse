@@ -48,13 +48,13 @@ class WarehouseItemController extends Controller
         $product_id = $request->product;
         $stock = $request->warehouse_item_stock;
 
-        $warehouse_item = WarehouseItem::create([
+        WarehouseItem::create([
             'warehouse_id' => $warehouse_id,
             'product_id' => $product_id,
             'stock' => $stock
         ]);
 
-        $stock_history = StockHistory::create([
+        StockHistory::create([
             'warehouse_id' => $warehouse_id,
             'product_id' => $product_id,
             'user_id' => Auth::getUser()->id,
@@ -122,5 +122,36 @@ class WarehouseItemController extends Controller
         } else {
             return redirect()->route('warehouse.show', ['warehouse' => $warehouse_id])->with('error', 'Product not found.');
         }
+    }
+
+    public function retreiveItemView(WarehouseItem $warehouse_item)
+    {
+        $warehouse_id = $warehouse_item->warehouse_id;
+        $product_id = $warehouse_item->product_id;
+        $warehouse_item = WarehouseItem::where('warehouse_id', $warehouse_id)
+            ->where('product_id', $product_id)->first();
+        return view('warehouse-item.retreive', compact('warehouse_item'));
+    }
+
+    public function retreiveItem(Request $request, WarehouseItem $warehouse_item)
+    {
+        $warehouse_id = $warehouse_item->warehouse_id;
+        $product_id = $warehouse_item->product_id;
+        $value = $request->retreive;
+        $current_stock = $warehouse_item->stock - $value;
+
+        WarehouseItem::where('warehouse_id', $warehouse_id)
+            ->where('product_id', $product_id)->update(['stock' => $current_stock]);
+
+        StockHistory::create([
+            'warehouse_id' => $warehouse_id,
+            'product_id' => $product_id,
+            'user_id' => Auth::getUser()->id,
+            'current_stock' => $current_stock,
+            'transaction_type' => 'retreive',
+            'transaction_value' => $value * -1
+        ]);
+
+        return redirect()->route('warehouse.show', ['warehouse' => $warehouse_id])->with('success', 'Retreive item successfully');
     }
 }

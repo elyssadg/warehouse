@@ -118,6 +118,10 @@
                                             $warehouse_item = $warehouse->id . ' ' . $product->product->id;
                                         @endphp
                                         <a class="me-3"
+                                            href="{{ route('warehouse-item.retreiveView', ['warehouse_item' => $warehouse_item]) }}"><i
+                                                class="bi bi-database-dash" role="button"></i>
+                                            <span class="d-none d-lg-inline">Retreive</span></a>
+                                        <a class="me-3"
                                             href="{{ route('warehouse-item.edit', ['warehouse_item' => $warehouse_item]) }}"><i
                                                 class="bi bi-pencil-square" role="button"></i>
                                             <span class="d-none d-lg-inline">Edit</span></a>

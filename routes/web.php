@@ -38,6 +38,8 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::post('warehouse/{warehouse_id}', [WarehouseController::class, 'searchItemByName'])->name('warehouse-item.search');
     Route::get('warehouse-item/{warehouse_id}/create', [WarehouseItemController::class, 'create'])->name('warehouse-item.create');
+    Route::get('warehouse-item/{warehouse_item}/retreive', [WarehouseItemController::class, 'retreiveItemView'])->name('warehouse-item.retreiveView');
+    Route::POST('warehouse-item/{warehouse_item}/retreive', [WarehouseItemController::class, 'retreiveItem'])->name('warehouse-item.retreive');
     Route::POST('warehouse-item/{warehouse_id}', [WarehouseItemController::class, 'store'])->name('warehouse-item.store');
     Route::resource('warehouse-item', WarehouseItemController::class)->except(['create', 'index', 'store']);
 });
