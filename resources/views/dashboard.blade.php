@@ -111,7 +111,8 @@
                                             <td class="col-3">
                                                         <div class="d-flex align-items-center">
                                                             <div class="avatar avatar-md">
-                                                                <img src="dist/assets/compiled/jpg/{{ $i + 1 }}.jpg">
+                                                                {{-- <img src="dist/assets/compiled/jpg/{{ $i + 1 }}.jpg"> --}}
+                                                                <img src="/assets/product/{{$stockHistory[$i]->product->image}}" alt="">
                                                             </div>
                                                             <p class="mb-0 font-bold ms-3">{{ $stockHistory[$i]->product->name }}</p>
                                                         </div>
@@ -157,7 +158,7 @@
 					@for ($i = 0; $i < 3; $i++)
 						<div onclick="window.location='warehouse/{{$warehouse[$i]->id}}';" style="cursor: pointer;" class="px-4 py-3 recent-message d-flex">
 							<div class="avatar avatar-lg">
-								<img src="dist/assets/compiled/jpg/{{ $i + 1 }}.jpg">
+								<img src="/assets/logo/warehouse.png">
 							</div>
 							<div class="name ms-4">
 								<h5 class="mb-1"># {{ $warehouse[$i]->id }}</h5>
