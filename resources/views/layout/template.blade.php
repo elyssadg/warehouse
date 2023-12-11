@@ -90,7 +90,7 @@
                                 @if (Auth::user() && Auth::user()->role == 'Admin')
                                     <li class="submenu-item">
                                         <a href="{{ route('warehouse.create') }}" class="submenu-link"
-                                            style="{{ request()->route()->getName() === 'warehouse.store'? 'color: #435ebe; font-weight: 700;': '' }}">Add</a>
+                                            style="{{ request()->route()->getName() === 'warehouse.create'? 'color: #435ebe; font-weight: 700;': '' }}">Add</a>
                                     </li>
                                 @endif
                                     
@@ -137,7 +137,7 @@
                                 <ul class="submenu">
                                     <li class="submenu-item">
                                         <a href="{{ route('users.create') }}" class="submenu-link"
-                                            style="{{ request()->route()->getName() === 'users.store'? 'color: #435ebe; font-weight: 700;': '' }}">
+                                            style="{{ request()->route()->getName() === 'users.create'? 'color: #435ebe; font-weight: 700;': '' }}">
                                             Add
                                         </a>
                                     </li>
